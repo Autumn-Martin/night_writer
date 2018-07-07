@@ -13,4 +13,8 @@ class NightWriterTest < Minitest::Test
     file_reader = FileReader.new
     assert_instance_of FileReader, file_reader
   end
+
+  def can_print_a_line_of_text
+    
+  end
 end
