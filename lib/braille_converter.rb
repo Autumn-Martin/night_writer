@@ -33,8 +33,12 @@ class BrailleConverter
     }
   end
 
-  def convert
-    
+  def convert(input)
+    letters = input.chars
+    conversion = letters.map do |letter|
+      @conversion_map[letter]
+      end
+    return conversion.join
   end
 
 end
