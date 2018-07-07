@@ -25,13 +25,15 @@
 #   hand
 # end
 
-handle = File.open(ARGV[0], "r")
-incoming_text = handle.read
-handle.close
+reader = File.open(ARGV[0], "r")
+incoming_text = reader.read
+reader.close
 puts incoming_text
 
-braille_text = incoming_text.upcase.reverse
+outgoing_text = incoming_text.upcase.reverse
 writer = File.open(ARGV[1], "w")
-writer.write(braille_text)
+writer.write(outgoing_text)
 writer.close
-puts braille_text
+puts outgoing_text
+character_number = (outgoing_text.length) -1
+puts "Created '#{ARGV[1]}' containing #{character_number} characters."
