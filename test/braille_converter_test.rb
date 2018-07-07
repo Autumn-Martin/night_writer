@@ -8,4 +8,9 @@ class BrailleConverterTest < Minitest::Test
     braille_converter = BrailleConverter.new
     assert_instance_of BrailleConverter, braille_converter
   end
+
+  def test_translates_a_letter
+    braille_converter = BrailleConverter.new
+    assert_equal "0.....", braille_converter.convert("a")
+  end
 end
