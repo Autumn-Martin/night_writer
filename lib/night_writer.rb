@@ -32,7 +32,7 @@ reader.close
 # puts incoming_text
 
 braille_converter = BrailleConverter.new
-outgoing_text = braille_converter.convert_plain_text_to_braille(incoming_text)
+outgoing_text = braille_converter.convert_plain_text_to_braille(incoming_text.strip)
 writer = File.open(ARGV[1], "w")
 writer.write(outgoing_text)
 writer.close
