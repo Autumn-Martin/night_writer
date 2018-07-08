@@ -33,6 +33,13 @@ class BrailleConverter
     }
   end
 
+  def convert_plain_text_to_braille(incoming_text)
+    conversion = convert(incoming_text)
+    convert_to_row1 = putting_elements_in_row_1(conversion)
+    convert_to_row2 = putting_elements_in_row_2(conversion)
+    convert_to_row3 = putting_elements_in_row_3(conversion)
+  end
+
   def convert(input)
     letters = input.chars
     conversion = letters.map do |letter|
@@ -43,7 +50,7 @@ class BrailleConverter
 
   def putting_elements_in_row_1(conversion)
     row1 = []
-    conversion.each do |row|
+    convert_to_row1 = conversion.each do |row|
         row1 << conversion[0][0]
       end
     return row1
@@ -51,7 +58,7 @@ class BrailleConverter
 
   def putting_elements_in_row_2(conversion)
     row2 = []
-    conversion.each do |row|
+    convert_to_row2 = conversion.each do |row|
         row2 << conversion[0][1]
       end
     return row2
@@ -59,10 +66,13 @@ class BrailleConverter
 
   def putting_elements_in_row_3(conversion)
     row3 = []
-    conversion.each do |row|
+    convert_to_row3 = conversion.each do |row|
         row3 << conversion[0][2]
       end
     return row3
   end
 
 end
+
+bc = BrailleConverter.new
+bc.convert_plain_text_to_braille("a")
