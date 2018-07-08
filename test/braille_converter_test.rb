@@ -41,4 +41,11 @@ class BrailleConverterTest < Minitest::Test
       expected = [".."]
       assert_equal expected, braille_converter.putting_elements_in_row_2([["0.", "..", ".."]])
   end
+
+  def test_it_puts_elements_in_row_3
+      braille_converter = BrailleConverter.new
+      # braille_converter.convert("a")
+      expected = [".."]
+      assert_equal expected, braille_converter.putting_elements_in_row_3([["0.", "..", ".."]])
+  end
 end
