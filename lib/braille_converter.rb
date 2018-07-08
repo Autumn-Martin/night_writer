@@ -56,33 +56,13 @@ class BrailleConverter
       end
     return row2
   end
-  # letters.each do |letter|
-  #   letter[0].each do
 
+  def putting_elements_in_row_3(conversion)
+    row3 = []
+    conversion.each do |row|
+        row3 << conversion[0][2]
+      end
+    return row3
+  end
 
-
-  # def convert(input)
-  #   letters = input.chars
-  #   conversion = letters.map do |letter|
-  #     braille_rows(letter)
-  #   end
-  #   return conversion
-  # end
-  #
-  # def braille_rows(letter)
-  #   @conversion_map[letter].map do |row|
-  #     row
-  #   end
-  # end
-  #
-  # def print_to_terminal(letters) #formats array of letters so that it looks pretty on terminal
-  #   letters.each do |letter|
-  #     letter.each do |row|
-  #       row.each do |character|
-  #         print character
-  #       end
-  #       puts "\n"
-  #     end
-  #   end
-  # end
 end
