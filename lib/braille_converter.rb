@@ -4,8 +4,8 @@ class BrailleConverter
   def initialize
     # zero = raised dot & period = space
     @conversion_map = {
-      "a" => ["0....."],
-      "b" => ["0.0..."],
+      "a" => ["0.", "..", ".."],
+      "b" => ["0.", "0.", ".."],
       "c" => ["00...."],
       "d" => ["00.0.."],
       "e" => ["0..0.."],
@@ -38,7 +38,31 @@ class BrailleConverter
     conversion = letters.map do |letter|
       @conversion_map[letter]
       end
-    return conversion.join
+    return conversion
+  end
+
+  def putting_elements_in_row_1(conversion)
+    row1 = []
+    conversion.each do |row|
+        row1 << conversion[0][0]
+      end
+    return row1
+  end
+
+  def putting_elements_in_row_2(conversion)
+    row2 = []
+    conversion.each do |row|
+        row2 << conversion[0][1]
+      end
+    return row2
+  end
+
+  def putting_elements_in_row_3(conversion)
+    row3 = []
+    conversion.each do |row|
+        row3 << conversion[0][2]
+      end
+    return row3
   end
 
 end

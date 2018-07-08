@@ -25,15 +25,17 @@
 #   hand
 # end
 
+require_relative "./braille_converter"
 reader = File.open(ARGV[0], "r")
 incoming_text = reader.read
 reader.close
-puts incoming_text
+# puts incoming_text
 
-outgoing_text = incoming_text.upcase.reverse
+braille_converter = BrailleConverter.new
+outgoing_text = braille_converter.convert(incoming_text)
 writer = File.open(ARGV[1], "w")
 writer.write(outgoing_text)
 writer.close
-puts outgoing_text
+# puts outgoing_text
 character_number = (outgoing_text.length) -1
 puts "Created '#{ARGV[1]}' containing #{character_number} characters."
