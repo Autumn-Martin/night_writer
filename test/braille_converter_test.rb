@@ -2,6 +2,7 @@ require "minitest/autorun"
 require "minitest/pride"
 require "pry"
 require "./lib/braille_converter"
+require "./lib/dictionary"
 
 class BrailleConverterTest < Minitest::Test
 
