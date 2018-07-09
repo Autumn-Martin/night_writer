@@ -41,5 +41,5 @@ writer = File.open(ARGV[1], "w")
 end
 writer.close
 
-character_number = (outgoing_text.length)
+character_number = outgoing_text[0][0].length + outgoing_text[1][0].length + outgoing_text[2][0].length
 puts "Created '#{ARGV[1]}' containing #{character_number} characters."
