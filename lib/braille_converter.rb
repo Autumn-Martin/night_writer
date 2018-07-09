@@ -58,7 +58,7 @@ class BrailleConverter
 
   def putting_elements_in_row_1(converted)
     line_1 = []
-    converted.map do |char_1|
+    converted.each do |char_1|
       line_1 << char_1[0]
     end
     @output << line_1
@@ -66,7 +66,7 @@ class BrailleConverter
 
   def putting_elements_in_row_2(converted)
     line_2 = []
-    converted.map do |char_2|
+    converted.each do |char_2|
       # require "pry"; binding.pry
       line_2 << char_2[1]
     end
@@ -75,7 +75,7 @@ class BrailleConverter
 
   def putting_elements_in_row_3(converted)
     line_3 = []
-    converted.map do |char_3|
+    converted.each do |char_3|
       line_3 << char_3[2]
     end
     @output << line_3
