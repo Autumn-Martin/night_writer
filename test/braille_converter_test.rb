@@ -4,6 +4,7 @@ require "pry"
 require "./lib/braille_converter"
 
 class BrailleConverterTest < Minitest::Test
+
   def test_it_exists
     braille_converter = BrailleConverter.new
     assert_instance_of BrailleConverter, braille_converter
@@ -12,89 +13,146 @@ class BrailleConverterTest < Minitest::Test
 
   def test_it_converts_input_to_braille
     braille_converter = BrailleConverter.new
-    actual = braille_converter.convert("a")
+
     expected = [["0.", "..", ".."]]
-    assert_equal expected, actual
+    assert_equal expected, braille_converter.convert("a")
+
+    expected = [["0.", ".0", "00"]]
+    assert_equal expected, braille_converter.convert("z")
   end
 
-  def test_it_puts_elements_in_line_1
+  def test_it_moves_first_element_of_single_braille_letter_in_line_1
     braille_converter = BrailleConverter.new
 
-    expected = ["0."]
-    assert_equal expected, braille_converter.putting_elements_in_row_1([["0.", "..", ".."]])
-  end
+    converted = braille_converter.convert("a")
 
-  def test_it_puts_elements_in_row_2
-    braille_converter = BrailleConverter.new
-    # braille_converter.convert("a")
-    expected = [".."]
-    assert_equal expected, braille_converter.putting_elements_in_row_2([["0.", "..", ".."]])
-  end
-
-  def test_it_puts_elements_in_row_3
-    braille_converter = BrailleConverter.new
-    # braille_converter.convert("a")
-    expected = [".."]
-    assert_equal expected, braille_converter.putting_elements_in_row_3([["0.", "..", ".."]])
-  end
-
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-  def test_it_can_move_first_two_characters_of_multiple_letters_to_a_new_array
-    skip
-    nw = NightWriterPlayground.new
-
-    input = [["0.", "..", ".."], ["0.", "0.", ".."]]
-    actual = nw.move_braille_letter_element_to_new_array(input)
-    expected = ['0.', '0.']
+    expected = [["0."]]
+    actual = braille_converter.putting_elements_in_row_1(converted)
 
     assert_equal expected, actual
   end
 
-  def test_it_can_move_second_set_of_braille_characters_of_multiple_letters_to_an_array
-    skip
-    nw = NightWriterPlayground.new
+  def test_it_moves_first_elements_of_a_different_letter_in_line_1
+    # skip
+    braille_converter = BrailleConverter.new
 
-    input = [["0.", "..", ".."]]
-    actual = nw.move_second_braille_letter_element_to_new_array(input)
-    expected = ['..']
+    converted = braille_converter.convert("z")
+
+    expected = [["0."]]
+    actual = braille_converter.putting_elements_in_row_1(converted)
+    assert_equal expected, actual
+  end
+
+  def test_it_moves_first_element_of_single_braille_letter_in_line_2
+    braille_converter = BrailleConverter.new
+
+    converted = braille_converter.convert("a")
+
+    expected = [[".."]]
+    actual = braille_converter.putting_elements_in_row_2(converted)
 
     assert_equal expected, actual
   end
 
-  def test_it_can_translate_two_letters_to_a_braille_letter
-    skip
-    nw = NightWriterPlayground.new
+  def test_it_moves_first_elements_of_a_different_letter_in_line_2
+    # skip
+    braille_converter = BrailleConverter.new
 
-    actual = nw.convert_plain_text_letter_to_braille_letter("ab")
+    converted = braille_converter.convert("z")
+
+    expected = [[".0"]]
+    actual = braille_converter.putting_elements_in_row_2(converted)
+
+    assert_equal expected, actual
+  end
+
+  def test_it_moves_first_element_of_single_braille_letter_in_line_3
+    braille_converter = BrailleConverter.new
+
+    converted = braille_converter.convert("a")
+
+    expected = [[".."]]
+    actual = braille_converter.putting_elements_in_row_3(converted)
+
+    assert_equal expected, actual
+  end
+
+  def test_it_moves_first_elements_of_a_different_letter_in_line_3
+    braille_converter = BrailleConverter.new
+
+    converted = braille_converter.convert("z")
+
+    expected = [["00"]]
+    actual = braille_converter.putting_elements_in_row_3(converted)
+
+    assert_equal expected, actual
+  end
+# ----------------BEGIN MULTIPLE LETTER TESTS-----------------------------
+  def test_it_can_translate_two_letters_to_braille
+    # skip
+    braille_converter = BrailleConverter.new
+
     expected = [["0.", "..", ".."], ["0.", "0.", ".."]]
 
+    assert_equal expected, braille_converter.convert("ab")
+  end
+
+  def test_it_can_put_first_elements_of_multiple_braille_letters_in_new_array
+    # skip
+    braille_converter = BrailleConverter.new
+
+    converted = braille_converter.convert("ab")
+
+    expected = [['0.', '0.']]
+    actual = braille_converter.putting_elements_in_row_1(converted)
+
     assert_equal expected, actual
   end
-$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-
-#######################
-
-  def test_it_puts_two_elements_in_row_1
+  def test_it_can_put_second_elements_of_multiple_braille_letters_in_new_array
+    # skip
     braille_converter = BrailleConverter.new
-    # braille_converter.convert("a")
-    expected = ["0.", "0."]
-    input = [["0.", "..", ".."],["0.", "0.", ".."]]
-    assert_equal expected, braille_converter.putting_elements_in_row_1(input)
+
+    converted = braille_converter.convert("ab")
+
+    expected = [['..', '0.']]
+    actual = braille_converter.putting_elements_in_row_2(converted)
+
+    assert_equal expected, actual
   end
 
+  def test_it_can_put_third_elements_of_multiple_braille_letters_in_new_array
+    # skip
+    braille_converter = BrailleConverter.new
 
+    converted = braille_converter.convert("ab")
 
-###############################
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    expected = [["..", ".."]]
+    actual = braille_converter.putting_elements_in_row_3(converted)
 
-  def test_runner
-  skip
-    nw = NightWriterPlayground.new
+    assert_equal expected, actual
+  end
+# ------------------END MULTIPLE LETTER TESTS--------------------------------
+
+# ------------------BEGIN INTEGRATION TESTS----------------------------------
+  def test_it_converts_a_plain_text_letter_to_braille
+  # skip
+    braille_converter = BrailleConverter.new
 
     expected = [['0.'], ['..'], ['..']]
+    actual = braille_converter.convert_plain_text_to_braille("a")
 
-    assert_equal expected, nw.runner("a")
+    assert_equal expected, actual
   end
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  def test_it_can_convert_multiple_plain_text_letters_to_braille
+  # skip
+    braille_converter = BrailleConverter.new
+
+    expected = [["0.", "0.", "0.", "0.", "0."], ["00", ".0", "0.", "0.", ".0"], ["..", "..", "0.", "0.", "0."]]
+    actual = braille_converter.convert_plain_text_to_braille("hello")
+
+    assert_equal expected, actual
+  end
+  # ------------------END INTEGRATION TESTS-----------------------------------
 end
