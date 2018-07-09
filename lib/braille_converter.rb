@@ -39,7 +39,7 @@ class BrailleConverter
   def output_to_file(incoming_text)
     convert_plain_text_to_braille(incoming_text)
     @output.map do |element|
-     element.join.scan(/.{80}/) << "\n"
+     element.join.scan(/.{,80}/) << "\n"
    end
   end
 
