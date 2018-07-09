@@ -29,13 +29,12 @@ require_relative "./braille_converter"
 reader = File.open(ARGV[0], "r")
 incoming_text = reader.read
 reader.close
-# puts incoming_text
 
 braille_converter = BrailleConverter.new
-outgoing_text = braille_converter.convert_plain_text_to_braille(incoming_text.strip)
+outgoing_text = braille_converter.output_to_file(incoming_text.strip)
 writer = File.open(ARGV[1], "w")
 writer.write(outgoing_text)
 writer.close
-# puts outgoing_text
-character_number = (outgoing_text.length) -1
+
+character_number = (outgoing_text.length)
 puts "Created '#{ARGV[1]}' containing #{character_number} characters."
