@@ -39,8 +39,8 @@ class BrailleConverter
   def output_to_file(incoming_text)
     convert_plain_text_to_braille(incoming_text)
     @output.map do |element|
-     eelement.join.scan(/.{80}/) << "\n"
-   end.join
+     element.join.scan(/.{80}/) << "\n"
+   end
   end
 
   def convert_plain_text_to_braille(incoming_text)
@@ -67,7 +67,6 @@ class BrailleConverter
   def putting_elements_in_row_2(converted)
     line_2 = []
     converted.each do |char_2|
-      # require "pry"; binding.pry
       line_2 << char_2[1]
     end
     @output << line_2
