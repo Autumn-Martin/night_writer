@@ -26,9 +26,9 @@ class EnglishConverterTest < Minitest::Test
   end
 
   def test_it_outputs_to_file
-    skip
+    input_braille = [["0.", "..", ".."], ["0.", "0.", ".."], ["00", "..", ".."]]
     english_converter = EnglishConverter.new
-    assert_equal
+    assert_equal "abc", english_converter.output_to_file(input_braille)
 
   end
 end
