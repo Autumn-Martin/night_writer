@@ -1,4 +1,5 @@
 require "pry"
+require_relative "dictionary"
 
 class BrailleConverter
   def initialize

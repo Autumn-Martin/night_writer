@@ -11,6 +11,7 @@ class BrailleConverterTest < Minitest::Test
     assert_instance_of BrailleConverter, braille_converter
   end
 
+  #### TEST IT OUTPUTS TO A FILE ######
 
   def test_it_converts_input_to_braille
     braille_converter = BrailleConverter.new
