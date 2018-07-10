@@ -13,17 +13,18 @@ class EnglishConverter
   end
 
   def output_to_file(incoming_braille)
-    convert_braille_to_plain_text(incoming_braille)
-    @output.map do |element|
-      element.join.scan(/.{1,40}/) << "\n"
-    end
+  #   convert_braille_to_plain_text(incoming_braille)
+    @output
+  #   # @output.map do |element|
+  #   #   element.join.scan(/.{1,80}/) << "\n"
+  #   # end
   end
 
   def convert_braille_to_plain_text(incoming_braille)
     english_array = incoming_braille.map do |braille|
       @inverted_conversion_map[braille]
     end
-    english_array.join
+    english_array.join #=>string
   end
 
 end
