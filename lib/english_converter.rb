@@ -5,7 +5,6 @@ class EnglishConverter
     @dictionary = Dictionary.new
   end
 
-
   def braille_to_english(incoming_text)
     split = split_incoming_message(incoming_text)
     sliced = slice_message(split)
@@ -41,8 +40,8 @@ class EnglishConverter
 
   def convert_braille_letters_to_english_letters(braille_letter)
     braille_words = braille_letter.flatten(1)
-      braille_words.map do |letter|
-        @dictionary.conversion_map.invert[letter]
+      braille_words.map do |braille_letter|
+        @dictionary.conversion_map.key(braille_letter)
     end.join
   end
 
@@ -56,19 +55,18 @@ class EnglishConverter
     braille_to_english(braille_message)
   end
 
-  def braille_to_english(braille_message)
-    binding.pry
-    braille_array = braille_message.chars
-    letters = braille_array.map do |character|
-      @dictionary.conversion_map.key(character)
-    end
-  end
+end 
+  # def braille_to_english(braille_message)
+  #   binding.pry
+  #   braille_array = braille_message.chars
+  #   letters = braille_array.map do |character|
+  #     @dictionary.conversion_map.key(character)
+  #   end
+  # end
 
-  def reformat(braille_message)
-    split = braille_message.split
-    split.map do |element|
-      split[0][0..1] + split[0+1][0..1]
-    end
-  end
-
-end
+  # def reformat(braille_message)
+  #   split = braille_message.split
+  #   split.map do |element|
+  #     split[0][0..1] + split[0+1][0..1]
+  #   end
+  # end
