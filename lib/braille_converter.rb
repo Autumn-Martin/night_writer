@@ -16,9 +16,9 @@ class BrailleConverter
 
   def convert_plain_text_to_braille(incoming_text)
     converted = convert_text_letter_to_braille(incoming_text)
-    putting_elements_in_row_1(converted)
-    putting_elements_in_row_2(converted)
-    putting_elements_in_row_3(converted)
+    putting_elements_on_right_level(converted, 0)
+    putting_elements_on_right_level(converted, 1)
+    putting_elements_on_right_level(converted, 2)
   end
 
   def convert_text_letter_to_braille(input)
@@ -27,27 +27,12 @@ class BrailleConverter
     end
   end
 
-  def putting_elements_in_row_1(converted)
-    line_1 = []
-    converted.each do |char_1|
-      line_1 << char_1[0]
+  def putting_elements_on_right_level(converted, level)
+    line = []
+    converted.each do |character_pair|
+      line << character_pair[level]
     end
-    @output << line_1
+    @output << line
   end
 
-  def putting_elements_in_row_2(converted)
-    line_2 = []
-    converted.each do |char_2|
-      line_2 << char_2[1]
-    end
-    @output << line_2
-  end
-
-  def putting_elements_in_row_3(converted)
-    line_3 = []
-    converted.each do |char_3|
-      line_3 << char_3[2]
-    end
-    @output << line_3
-  end
 end
