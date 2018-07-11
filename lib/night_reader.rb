@@ -1,12 +1,14 @@
 require "./lib/english_converter"
 
-reader = File.open(ARGV[0], "r")
-incoming_text = reader.read
-reader.close
+# reader = File.open(ARGV[0], "r")
+# incoming_text = reader.read
+# reader.close
 
 english_converter = EnglishConverter.new
 outgoing_text = english_converter.output_to_file(incoming_text.strip)
 writer = File.open(ARGV[1], "w")
+
+  ####### currently returns nil, we need a method here #####
 #   outgoing_text[0].each_index do |i|
 #     writer.write(outgoing_text[0][i] <<"\n")
 #     writer.write(outgoing_text[1][i] <<"\n")
