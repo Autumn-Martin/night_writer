@@ -1,30 +1,47 @@
-require 'pry'
 require_relative "dictionary"
 
 class EnglishConverter
   def initialize
-    @output = ""
     @dictionary = Dictionary.new
-    @inverted_conversion_map = invert
   end
 
-  def invert
-    @dictionary.conversion_map.invert#invert conversion_map
+  def braille_to_english(incoming_text)
+    split = split_incoming_message(incoming_text)
+    sliced = slice_message(split)
+    scanned = find_characters(sliced)
+    combined = combine_braille_characters(scanned)
+    convert_braille_letters_to_english_letters(combined)
   end
 
-  def output_to_file(incoming_braille)
-  #   convert_braille_to_plain_text(incoming_braille)
-    @output
-  #   # @output.map do |element|
-  #   #   element.join.scan(/.{1,80}/) << "\n"
-  #   # end
+  def split_incoming_message(incoming_text)
+    incoming_text.split
   end
 
-  def convert_braille_to_plain_text(incoming_braille)
-    english_array = incoming_braille.map do |braille|
-      @inverted_conversion_map[braille]
+  def slice_message(split)
+    split.each_slice(3).map do |line|
+      line
     end
-    english_array.join #=>string
   end
 
+  def find_characters(sliced)
+    sliced.map do |slice|
+      slice.map {|line| line.scan(/../)}
+    end
+  end
+
+  def combine_braille_characters(scanned)
+    braille_letter = []
+    scanned.map.with_index do |braille, index|
+      braille_char = braille[0].zip(braille[1], braille[2])
+      braille_letter << braille_char
+    end
+    braille_letter
+  end
+
+  def convert_braille_letters_to_english_letters(braille_letter)
+    braille_words = braille_letter.flatten(1)
+      braille_words.map do |letter|
+        @dictionary.conversion_map.invert[letter]
+    end.join
+  end
 end
