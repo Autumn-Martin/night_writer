@@ -76,6 +76,7 @@ class EnglishConverterTest < Minitest::Test
 
     assert_equal "aaaaaqqqqq", english_converter.convert_braille_letters_to_english_letters(input)
 
+  end
   # def test_it_inverts_conversion_map
   #   english_converter = EnglishConverter.new
   #
@@ -85,9 +86,9 @@ class EnglishConverterTest < Minitest::Test
 
 
 
-  def test_it_translate_input_from_file
-    english_converter = EnglishConverter.new
-    braille_message = english_converter.from_file("braille.txt")
-    assert_equal "abc", english_converter.braille_to_english(braille_message)
-  end
+  # def test_it_translate_input_from_file
+  #   english_converter = EnglishConverter.new
+  #   braille_message = english_converter.from_file("braille.txt")
+  #   assert_equal "abc", english_converter.braille_to_english(braille_message)
+  # end
 end
