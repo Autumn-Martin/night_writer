@@ -10,6 +10,7 @@ class EnglishConverterTest < Minitest::Test
     assert_instance_of EnglishConverter, english_converter
   end
 
+
   def test_it_can_split_incoming_english_text_into_an_array
     # skip
     english_converter = EnglishConverter.new
@@ -74,5 +75,19 @@ class EnglishConverterTest < Minitest::Test
     ["00", "00", "0."]]]
 
     assert_equal "aaaaaqqqqq", english_converter.convert_braille_letters_to_english_letters(input)
+
+  # def test_it_inverts_conversion_map
+  #   english_converter = EnglishConverter.new
+  #
+  #   assert_equal "a" ,  english_converter.invert[["0.", "..", ".."]]
+  # end
+  #
+
+
+
+  def test_it_translate_input_from_file
+    english_converter = EnglishConverter.new
+    braille_message = english_converter.from_file("braille.txt")
+    assert_equal "abc", english_converter.braille_to_english(braille_message)
   end
 end
