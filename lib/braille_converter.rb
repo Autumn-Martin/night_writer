@@ -7,21 +7,21 @@ class BrailleConverter
     @dictionary = Dictionary.new
   end
 
-  def output_to_file(incoming_text)
+  def english_to_braille(incoming_text)
     convert_plain_text_to_braille(incoming_text)
     @output.map do |element|
-     element.join.scan(/.{1,80}/) << "\n"
+     element.join.scan(/.{1,80}/)
    end
   end
 
   def convert_plain_text_to_braille(incoming_text)
-    converted = convert(incoming_text)
+    converted = convert_text_letter_to_braille(incoming_text)
     putting_elements_in_row_1(converted)
     putting_elements_in_row_2(converted)
     putting_elements_in_row_3(converted)
   end
 
-  def convert(input)
+  def convert_text_letter_to_braille(input)
     converted = input.chars.map do |letter|
       @dictionary.conversion_map[letter]
     end
