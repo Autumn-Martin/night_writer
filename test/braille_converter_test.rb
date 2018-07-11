@@ -13,92 +13,90 @@ class BrailleConverterTest < Minitest::Test
     # skip
     braille_converter = BrailleConverter.new
 
-    expected = [["0.", "..", ".."]]
-    assert_equal expected, braille_converter.convert_text_letter_to_braille("a")
+    expected_a = [["0.", "..", ".."]]
+    expected_z = [["0.", ".0", "00"]]
+    actual_a = braille_converter.convert_text_letter_to_braille("a")
+    actual_z = braille_converter.convert_text_letter_to_braille("z")
 
-    expected = [["0.", ".0", "00"]]
-    assert_equal expected, braille_converter.convert_text_letter_to_braille("z")
+    assert_equal expected_a, actual_a
+    assert_equal expected_z, actual_z
   end
-
-  def test_it_moves_first_element_of_single_braille_letter_to_line_1
+  #
+  def test_it_moves_first_element_of_single_braille_letter_to_top_line
     # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", ".0", "00"]]
-
     expected = [["0."]]
-    actual = braille_converter.putting_elements_in_row_1(converted)
+    actual = braille_converter.putting_elements_on_right_level(converted, 0)
 
     assert_equal expected, actual
   end
-
-  def test_it_moves_second_element_of_single_braille_letter_to_line_2
+  #
+  def test_it_moves_second_element_of_single_braille_letter_to_middle_level
     # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", ".0", "00"]]
-
     expected = [[".0"]]
+    actual = braille_converter.putting_elements_on_right_level(converted, 1)
 
-    assert_equal expected, braille_converter.putting_elements_in_row_2(converted)
+    assert_equal expected, actual
   end
-
-  def test_it_moves_third_element_of_single_braille_letter_to_line_3
+  #
+  def test_it_moves_third_element_of_single_braille_letter_to_bottom_level
     # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", ".0", "00"]]
-
     expected = [["00"]]
-    actual = braille_converter.putting_elements_in_row_3(converted)
+    actual = braille_converter.putting_elements_on_right_level(converted, 2)
 
     assert_equal expected, actual
   end
-
+  #
   def test_it_can_translate_two_letters_to_braille
     # skip
     braille_converter = BrailleConverter.new
 
     expected = [["0.", "..", ".."], ["0.", "0.", ".."]]
+    actual = braille_converter.convert_text_letter_to_braille("ab")
 
-    assert_equal expected, braille_converter.convert_text_letter_to_braille("ab")
+    assert_equal expected, actual
   end
 
-  def test_it_can_put_first_elements_of_multiple_braille_letters_in_new_array
-    # skip
+  def test_it_puts_top_character_pair_on_top_level
     braille_converter = BrailleConverter.new
 
     converted = [["0.", "..", ".."], ["0.", "0.", ".."]]
-
     expected = [['0.', '0.']]
-    actual = braille_converter.putting_elements_in_row_1(converted)
+    actual = braille_converter.putting_elements_on_right_level(converted, 0)
 
     assert_equal expected, actual
   end
-
-  def test_it_can_put_second_elements_of_multiple_braille_letters_in_new_array
+  #
+  def test_it_puts_middle_character_pair_on_middle_level
     # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", "..", ".."], ["0.", "0.", ".."]]
-
     expected = [['..', '0.']]
-    actual = braille_converter.putting_elements_in_row_2(converted)
+    actual = braille_converter.putting_elements_on_right_level(converted, 1)
 
     assert_equal expected, actual
   end
-
-  def test_it_can_put_third_elements_of_multiple_braille_letters_in_new_array
+  #
+  def test_it_puts_bottom_character_pair_on_bottom_level
     # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", "..", ".."], ["0.", "0.", ".."]]
-
     expected = [["..", ".."]]
-    actual = braille_converter.putting_elements_in_row_3(converted)
+    actual = braille_converter.putting_elements_on_right_level(converted, 2)
 
     assert_equal expected, actual
   end
+
 
   def test_it_can_convert_multiple_braille_letters_to_braille
     # skip#
