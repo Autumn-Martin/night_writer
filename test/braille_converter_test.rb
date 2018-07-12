@@ -10,7 +10,6 @@ class BrailleConverterTest < Minitest::Test
   end
 
   def test_it_converts_input_to_braille
-    # skip
     braille_converter = BrailleConverter.new
 
     expected_a = [["0.", "..", ".."]]
@@ -21,9 +20,8 @@ class BrailleConverterTest < Minitest::Test
     assert_equal expected_a, actual_a
     assert_equal expected_z, actual_z
   end
-  #
+
   def test_it_moves_first_element_of_single_braille_letter_to_top_line
-    # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", ".0", "00"]]
@@ -32,9 +30,8 @@ class BrailleConverterTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  #
+
   def test_it_moves_second_element_of_single_braille_letter_to_middle_level
-    # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", ".0", "00"]]
@@ -43,9 +40,8 @@ class BrailleConverterTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  #
+
   def test_it_moves_third_element_of_single_braille_letter_to_bottom_level
-    # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", ".0", "00"]]
@@ -54,9 +50,8 @@ class BrailleConverterTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  #
+
   def test_it_can_translate_two_letters_to_braille
-    # skip
     braille_converter = BrailleConverter.new
 
     expected = [["0.", "..", ".."], ["0.", "0.", ".."]]
@@ -74,9 +69,8 @@ class BrailleConverterTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  #
+
   def test_it_puts_middle_character_pair_on_middle_level
-    # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", "..", ".."], ["0.", "0.", ".."]]
@@ -85,9 +79,8 @@ class BrailleConverterTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  #
+
   def test_it_puts_bottom_character_pair_on_bottom_level
-    # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", "..", ".."], ["0.", "0.", ".."]]
@@ -99,11 +92,11 @@ class BrailleConverterTest < Minitest::Test
 
 
   def test_it_can_convert_multiple_braille_letters_to_braille
-    # skip#
     braille_converter = BrailleConverter.new
 
-    expected = [["0.", "0.", "0.", "0.", "0."], ["00", ".0", "0.", "0.", ".0"], ["..", "..", "0.", "0.", "0."]]
-    actual = braille_converter.convert_plain_text_to_braille("hello")
+    expected = [["0.", "0.", "0.", "0.", "0."], ["00", ".0", "0.", "0.", ".0"],
+    ["..", "..", "0.", "0.", "0."]]
+    actual = braille_converter.convert_english_to_braille("hello")
 
     assert_equal expected, actual
   end

@@ -7,11 +7,10 @@ night_reader.close
 
 
 english_converter = EnglishConverter.new
-outgoing_text = english_converter.braille_to_english(braille_text.strip)
+outgoing_english_text = english_converter.braille_to_english(braille_text.strip)
 writer = File.open(ARGV[1], "w")
-
-writer.write(outgoing_text)
+writer.write(outgoing_english_text)
 writer.close
 
-character_number = outgoing_text.length
+character_number = outgoing_english_text.length
 puts "Created '#{ARGV[1]}' containing #{character_number} characters."
