@@ -49,5 +49,4 @@ class EnglishConverter
   # @dictionary.conversion_map.key(braille) # gives access to the keys (letter) based on knowlege of the value (braille)
   # take what's written on braille.txt, read it, & compare it to our dictionary
 
-
 end

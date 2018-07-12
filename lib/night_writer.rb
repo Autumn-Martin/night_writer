@@ -1,5 +1,6 @@
 require_relative "./braille_converter"
 
+
 english_input_file = File.open(ARGV[0], "r") # opening file & reading it
 incoming_english_text = english_input_file.read
 english_input_file.close
