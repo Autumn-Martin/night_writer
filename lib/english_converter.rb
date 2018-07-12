@@ -55,18 +55,4 @@ class EnglishConverter
     braille_to_english(braille_message)
   end
 
-end 
-  # def braille_to_english(braille_message)
-  #   binding.pry
-  #   braille_array = braille_message.chars
-  #   letters = braille_array.map do |character|
-  #     @dictionary.conversion_map.key(character)
-  #   end
-  # end
-
-  # def reformat(braille_message)
-  #   split = braille_message.split
-  #   split.map do |element|
-  #     split[0][0..1] + split[0+1][0..1]
-  #   end
-  # end
+end
