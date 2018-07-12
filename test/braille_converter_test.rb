@@ -69,9 +69,8 @@ class BrailleConverterTest < Minitest::Test
 
     assert_equal expected, actual
   end
-  #
+
   def test_it_puts_middle_character_pair_on_middle_level
-    # skip
     braille_converter = BrailleConverter.new
 
     converted = [["0.", "..", ".."], ["0.", "0.", ".."]]
@@ -95,8 +94,9 @@ class BrailleConverterTest < Minitest::Test
   def test_it_can_convert_multiple_braille_letters_to_braille
     braille_converter = BrailleConverter.new
 
-    expected = [["0.", "0.", "0.", "0.", "0."], ["00", ".0", "0.", "0.", ".0"], ["..", "..", "0.", "0.", "0."]]
-    actual = braille_converter.convert_plain_text_to_braille("hello")
+    expected = [["0.", "0.", "0.", "0.", "0."], ["00", ".0", "0.", "0.", ".0"],
+    ["..", "..", "0.", "0.", "0."]]
+    actual = braille_converter.convert_english_to_braille("hello")
 
     assert_equal expected, actual
   end
