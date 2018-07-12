@@ -10,12 +10,12 @@ class BrailleConverter
   def english_to_braille(incoming_english)
     convert_english_to_braille(incoming_english)
     @braille_output.map do |element|
-     element.join.scan(/.{1,80}/) #array -join-> string ->scan -> arrays
+     element.join.scan(/.{1,80}/)
     end
   end
-  # scan can only works on strings, and returns arrays
 
-  def convert_english_to_braille(incoming_english) #runner method - calling all the methods within
+
+  def convert_english_to_braille(incoming_english)
     converted = convert_text_letter_to_braille(incoming_english)
     putting_elements_on_right_level(converted, 0) # top level
     putting_elements_on_right_level(converted, 1) # middle level
@@ -23,8 +23,8 @@ class BrailleConverter
   end
 
   def convert_text_letter_to_braille(incoming_english)
-    incoming_english.chars.map do |letter| #chars will breakup the text into and array of individual letters
-      @dictionary.conversion_map[letter] #letter = key, so accessing the value of key (returning the key's value = braille)
+    incoming_english.chars.map do |letter|
+      @dictionary.conversion_map[letter] 
     end
   end
 
